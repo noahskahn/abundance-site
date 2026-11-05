@@ -1,0 +1,73 @@
+---
+layout: base.njk
+title: About Us
+description: The Abundance Foundation and our partners train, support and empower local leaders in communities worldwide.
+---
+{%- from "icons.njk" import icon -%}
+{% set ph = { title: "About Us", eyebrow: "Who we are", image: "/img/s2.jpg", color: "teal" } %}
+{% include "pagehead.njk" %}
+
+<section class="wrap prose-wrap">
+  <p class="lead-big">{{ hub.about.lead | safe }}</p>
+  <div class="two-col">
+    <div class="prose">
+      <h2 class="h-section">Our Philosophy</h2>
+      <p>{{ hub.about.philosophy | safe }}</p>
+      <p>{{ hub.about.after | safe }}</p>
+    </div>
+    <div class="video-frame" data-vimeo="64959249">
+      <img src="/img/c/screenshot2013-04-27at3.29.26pm.png" alt="" loading="lazy">
+      <button type="button" class="play" aria-label="Play video: How are we creating Abundance?">{{ icon("play", 34) }}</button>
+    </div>
+  </div>
+</section>
+
+<section class="band-cream" id="videos" aria-labelledby="vids-h">
+  <div class="wrap">
+    <h2 id="vids-h" class="h-section">Watch</h2>
+    <div class="videos-layout" data-playlist>
+      <div class="videos-stage">
+        <video controls preload="none" playsinline></video>
+      </div>
+      <ol class="videos-list">
+        {% for v in aboutVideos %}
+        <li><button type="button" data-src="{{ v.src }}"{% if loop.first %} aria-current="true"{% endif %}><span>{{ v.title }}</span><time>{{ v.length }}</time></button></li>
+        {% endfor %}
+      </ol>
+    </div>
+    <div class="film">
+      <p>{{ hub.about.full | safe }}</p>
+      <div class="video-frame iframe-frame"><iframe src="{{ hub.about.fullVideo }}" loading="lazy" allowfullscreen title="Haiti's Heroes — full-length film"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="leadership" aria-labelledby="lead-h">
+  <h2 id="lead-h" class="h-section">Leadership</h2>
+  <h3 class="h-sub">Board Members</h3>
+  <ul class="people">
+    {% for m in hub.about.board %}
+    <li class="person">
+      <img src="{{ m.photo }}" alt="{{ m.name }}" loading="lazy">
+      <div>
+        <h4>{{ m.name }}</h4>
+        <p class="role">{{ m.role | safe }}</p>
+        <details><summary>Read bio</summary><div class="bio">{{ m.bio | safe }}</div></details>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+  <h3 class="h-sub">Staff Members</h3>
+  <ul class="people">
+    {% for m in hub.about.staff %}
+    <li class="person">
+      <img src="{{ m.photo }}" alt="{{ m.name }}" loading="lazy">
+      <div>
+        <h4>{{ m.name }}</h4>
+        <p class="role">{{ m.role | safe }}</p>
+        <details><summary>Read bio</summary><div class="bio">{{ m.bio | safe }}</div></details>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+</section>

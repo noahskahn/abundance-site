@@ -1,0 +1,32 @@
+---
+layout: base.njk
+pagination:
+  data: hub.details
+  size: 1
+  alias: d
+permalink: "{{ d.path }}index.html"
+eleventyComputed:
+  title: "{{ d.title }}"
+  description: "{{ d.excerpt }}"
+---
+{%- from "icons.njk" import icon -%}
+{% set areaObj = hub.areaBySlug[d.area] if d.area else null %}
+{% set crumbs = [] %}
+{% if areaObj %}{% set crumbs = [{label: areaObj.name, href: areaObj.path}] %}{% else %}{% set crumbs = [{label: "Our Work", href: "/health/"}] %}{% endif %}
+{% set ph = { title: d.title, crumbs: crumbs, color: d.areaColor } %}
+{% include "pagehead.njk" %}
+<section class="wrap detail">
+  <article class="prose detail-body">
+    {{ d.lead | safe }}
+    {{ d.body | safe }}
+  </article>
+  {% if areaObj %}
+  <aside class="side">
+    <h2>More in {{ areaObj.name }}</h2>
+    <ul>
+      {% for p in areaObj.projects %}<li><a href="{{ p.href }}"{% if p.href == d.path %} aria-current="page"{% endif %}>{{ p.title }}</a></li>{% endfor %}
+    </ul>
+    <a class="btn btn-donate btn-block" href="/donate/?t={{ areaObj.slug }}">Donate to {{ areaObj.name }}</a>
+  </aside>
+  {% endif %}
+</section>

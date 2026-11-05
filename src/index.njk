@@ -1,0 +1,119 @@
+---
+layout: base.njk
+title: Abundance Foundation
+bodyClass: home
+---
+{%- from "icons.njk" import icon -%}
+{% set featured = ["/empowerment/nyanam/", "/arts-education/out-of-eden-walk/", "/health/pediatric/"] %}
+
+<section class="hero" aria-labelledby="hero-h">
+  <img class="hero-img" src="/img/c/media_nyanam_b.jpg" alt="" fetchpriority="high">
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <h1 id="hero-h">Transforming scarcity<br><span>into abundance</span></h1>
+      <p>The Abundance Foundation partners with visionaries who transform scarcity into abundance — training and supporting local leaders in communities worldwide.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/donate/">{{ icon("heart", 18) }} Donate Now</a>
+        <a class="btn btn-ghost" href="/about/">Our Approach</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="statement wrap" aria-labelledby="stmt-h">
+  <h2 id="stmt-h" class="display">We partner with visionaries</h2>
+  <p class="lead">We work at the intersection of Health, Arts &amp; Education, and Empowerment — building whole and healthy communities by backing the local leaders who know them best.</p>
+  <ul class="pillars">
+    {% for a in hub.areas %}
+    <li class="pillar pillar-{{ a.color }}">
+      <a href="{{ a.path }}">
+        {{ icon(a.slug, 72) }}
+        <h3>{{ a.name }}</h3>
+        <p>{{ a.short }}</p>
+        <span class="more">Explore {{ a.name }} {{ icon("arrow", 18) }}</span>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+
+<section class="featured" aria-labelledby="feat-h">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="feat-h" class="h-section">Featured Projects</h2>
+      <a class="more" href="/health/">All projects {{ icon("arrow", 18) }}</a>
+    </div>
+    <div class="cards cards-3">
+      {% for href in featured %}
+        {% for a in hub.areas %}{% for p in a.projects %}{% if p.href == href %}
+        <article class="card tone-{{ a.color }}">
+          <a class="card-img" href="{{ p.href }}" tabindex="-1" aria-hidden="true"><img src="{{ p.thumb }}" alt="" loading="lazy"></a>
+          <div class="card-body">
+            <p class="tag">{{ a.name }}</p>
+            <h3><a href="{{ p.href }}">{{ p.title }}</a></h3>
+            <p>{{ p.summary }}…</p>
+            <a class="more" href="{{ p.href }}">Read more {{ icon("arrow", 18) }}</a>
+          </div>
+        </article>
+        {% endif %}{% endfor %}{% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="video-feature" aria-labelledby="vid-h">
+  <div class="wrap video-grid">
+    <div class="video-copy">
+      <p class="eyebrow">Featured video</p>
+      <h2 id="vid-h" class="h-section">How are we creating abundance?</h2>
+      <p>Learn more about our projects and the individuals behind this important work.</p>
+      <a class="more" href="/about/#videos">More videos {{ icon("arrow", 18) }}</a>
+    </div>
+    <div class="video-frame" data-vimeo="64959249">
+      <img src="/img/c/screenshot2013-04-27at3.29.26pm.png" alt="" loading="lazy">
+      <button type="button" class="play" aria-label="Play video: Overview — How are we creating abundance?">{{ icon("play", 34) }}</button>
+    </div>
+  </div>
+</section>
+
+<section class="news-block" aria-labelledby="news-h">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="news-h" class="h-section">News &amp; Updates</h2>
+      <a class="more" href="/news-updates/">View all {{ icon("arrow", 18) }}</a>
+    </div>
+    <div class="news-grid">
+      {% set lead = hub.news[0] %}
+      <a class="news-lead" href="{{ lead.path }}">
+        {% if lead.image %}<img src="{{ lead.image }}" alt="" loading="lazy">{% endif %}
+        <div class="news-lead-text">
+          <p class="tag">{{ lead.categoryLabel }}</p>
+          <h3>{{ lead.title }}</h3>
+          <p>{{ lead.excerptLong }}</p>
+        </div>
+      </a>
+      <ul class="news-list">
+        {% for p in hub.news %}{% if loop.index0 > 0 and loop.index0 < 5 %}
+        <li>
+          <p class="tag">{{ p.categoryLabel }}</p>
+          <h3><a href="{{ p.path }}">{{ p.title }}</a></h3>
+        </li>
+        {% endif %}{% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="drives wrap" aria-labelledby="drives-h">
+  <div class="drives-text">
+    <h2 id="drives-h" class="h-section">What drives us</h2>
+    <p>{{ hub.about.lead | safe | striptags }}</p>
+    <p>{{ hub.about.philosophy | safe | striptags }}</p>
+    <a class="btn btn-outline" href="/about/">About the Foundation</a>
+  </div>
+  <dl class="stats">
+    <div><dt>Projects</dt><dd>32</dd><dd class="sub">engaged as a partner or collaborator</dd></div>
+    <div><dt>Of every gift</dt><dd>100%</dd><dd class="sub">supports programs and partners</dd></div>
+    <div><dt>Impact areas</dt><dd>3</dd><dd class="sub">Health, Empowerment, Arts &amp; Education</dd></div>
+  </dl>
+</section>

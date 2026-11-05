@@ -1,0 +1,22 @@
+---
+layout: base.njk
+pagination:
+  data: hub.posts
+  size: 1
+  alias: post
+permalink: "{{ post.path }}index.html"
+eleventyComputed:
+  title: "{{ post.title }}"
+  description: "{{ post.excerpt }}"
+---
+{%- from "icons.njk" import icon -%}
+<article class="post">
+  <header class="post-head wrap">
+    <p class="eyebrow"><a href="/news-updates/">News &amp; Updates</a> &nbsp;/&nbsp; {{ post.categoryLabel }}</p>
+    <h1>{{ post.title }}</h1>
+  </header>
+  <div class="wrap post-wrap">
+    <div class="prose">{{ post.body | safe }}</div>
+  </div>
+  <footer class="wrap post-foot"><a class="more back" href="/news-updates/">{{ icon("arrow", 18) }} Back to all news</a></footer>
+</article>

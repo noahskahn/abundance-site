@@ -1,0 +1,19 @@
+{
+  "name": "abundance-foundation-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Abundance Foundation website — static, built with Eleventy",
+  "scripts": {
+    "import": "node scripts/import.mjs",
+    "build": "eleventy",
+    "start": "eleventy --serve --port=8080",
+    "check": "node scripts/check-links.mjs"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.2",
+    "@fontsource-variable/source-sans-3": "^5.2.9",
+    "@fontsource-variable/source-serif-4": "^5.2.9",
+    "cheerio": "^1.1.2",
+    "simple-icons": "^16.36.0"
+  }
+}

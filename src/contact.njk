@@ -1,0 +1,31 @@
+---
+layout: base.njk
+title: Contact
+description: The Abundance Foundation is based in Berkeley, CA. Get in touch or connect with the network.
+---
+{%- from "icons.njk" import icon -%}
+{% set ph = { title: "Contact", eyebrow: "Get in touch", color: "teal", lead: "The Abundance Foundation is based in Berkeley, CA. If you’re interested in learning more about us, or to connect with the network, please use the contact information below. Be sure to find us on social media, too!" } %}
+{% include "pagehead.njk" %}
+<section class="wrap contact-grid">
+  <dl class="contact-details">
+    <div><dt>Mail</dt><dd>127 University Avenue<br>Berkeley, CA 94710-1616</dd></div>
+    <div><dt>Email</dt><dd><a href="mailto:info@abundance.org">info@abundance.org</a></dd></div>
+    <div><dt>Phone</dt><dd><a href="tel:+15108414145">510-841-4145</a></dd></div>
+    <div><dt>Fax</dt><dd>510-841-4093</dd></div>
+    <div><dt>Social</dt><dd><span class="social-inline">{% for s in site.social %}<a href="{{ s.href }}" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="{{ s.path }}"/></svg>{{ s.label }}</a>{% endfor %}</span></dd></div>
+  </dl>
+  <div class="contact-form">
+    <h2 class="h-section">Stay in touch</h2>
+    <form data-mailto="info@abundance.org">
+      <label>Your name<input name="name" autocomplete="name" required></label>
+      <label>Email address<input name="email" type="email" autocomplete="email" required></label>
+      <label>Message<textarea name="message" rows="5" required></textarea></label>
+      <button class="btn btn-primary" type="submit">Send message</button>
+      <p class="fine">This opens your email app with the message addressed to info@abundance.org.</p>
+    </form>
+  </div>
+</section>
+<section class="band-cream stat-line">
+  <div class="wrap"><p><strong>32</strong> projects the Abundance Foundation is engaged in as a partner or collaborator.</p>
+  <div class="chips">{% for a in hub.areas %}<a class="chip chip-{{ a.color }}" href="{{ a.path }}">{{ a.name }}</a>{% endfor %}</div></div>
+</section>

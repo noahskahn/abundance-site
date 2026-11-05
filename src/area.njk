@@ -1,0 +1,41 @@
+---
+layout: base.njk
+pagination:
+  data: hub.areas
+  size: 1
+  alias: area
+permalink: "{{ area.path }}index.html"
+eleventyComputed:
+  title: "{{ area.name }}"
+  description: "{{ area.introText }}"
+---
+{%- from "icons.njk" import icon -%}
+{% set ph = { title: area.name, eyebrow: "Our work", image: area.hero, color: area.color } %}
+{% include "pagehead.njk" %}
+<section class="wrap area-intro">
+  <div class="lead-big">{{ area.intro | safe }}</div>
+  <aside class="area-switch" aria-label="Impact areas">
+    {% for a in hub.areas %}<a href="{{ a.path }}"{% if a.slug == area.slug %} aria-current="page"{% endif %} class="chip chip-{{ a.color }}">{{ a.name }}</a>{% endfor %}
+  </aside>
+</section>
+<section class="wrap" aria-labelledby="proj-h">
+  <h2 id="proj-h" class="h-section">Projects</h2>
+  <div class="cards cards-3">
+    {% for p in area.projects %}
+    <article class="card tone-{{ area.color }}">
+      <a class="card-img" href="{{ p.href }}" tabindex="-1" aria-hidden="true">{% if p.thumb %}<img src="{{ p.thumb }}" alt="" loading="lazy">{% endif %}</a>
+      <div class="card-body">
+        <h3><a href="{{ p.href }}">{{ p.title }}</a></h3>
+        <p>{{ p.summary }}…</p>
+        <a class="more" href="{{ p.href }}">Read more {{ icon("arrow", 18) }}</a>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+<section class="area-donate wrap">
+  <div class="callout tone-{{ area.color }}">
+    <div><h2>Support our {{ area.name }} work</h2><p>Your gift goes entirely to programs and partners in this impact area.</p></div>
+    <a class="btn btn-donate" href="/donate/?t={{ area.slug }}">Donate to {{ area.name }}</a>
+  </div>
+</section>

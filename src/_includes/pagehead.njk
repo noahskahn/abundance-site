@@ -1,0 +1,9 @@
+{# page header band: {{ ph.eyebrow }} {{ ph.title }} {{ ph.image }} {{ ph.color }} #}
+<section class="page-head tone-{{ ph.color or 'teal' }}{% if ph.image %} has-img{% endif %}">
+  {% if ph.image %}<img class="page-head-img" src="{{ ph.image }}" alt="" fetchpriority="high">{% endif %}
+  <div class="wrap page-head-inner">
+    {% if ph.crumbs %}<nav class="crumbs" aria-label="Breadcrumb">{% for c in ph.crumbs %}<a href="{{ c.href }}">{{ c.label }}</a>{% endfor %}</nav>{% elif ph.eyebrow %}<p class="eyebrow">{{ ph.eyebrow }}</p>{% endif %}
+    <h1>{{ ph.title }}</h1>
+    {% if ph.lead %}<p class="page-lead">{{ ph.lead | safe }}</p>{% endif %}
+  </div>
+</section>

@@ -1,0 +1,119 @@
+{%- from "icons.njk" import icon -%}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if title and title != site.name %}{{ title | safe }} | {% endif %}{{ site.name }}</title>
+  <meta name="description" content="{{ (description or site.description) | safe }}">
+  <meta property="og:title" content="{{ (title or site.name) | safe }}">
+  <meta property="og:description" content="{{ (description or site.description) | safe }}">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0f8c9d">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preload" href="/fonts/source-sans-3-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/site.css">
+  <script src="/js/site.js" defer></script>
+</head>
+<body class="{{ bodyClass }}">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="masthead" id="top">
+    <div class="masthead-bar wrap">
+      <a class="brand" href="/" aria-label="Abundance Foundation — home">
+        <img src="/img/logo.png" width="135" height="42" alt="Abundance Foundation">
+      </a>
+      <p class="tagline">Transforming scarcity to abundance.</p>
+      <a class="btn btn-donate" href="/donate/">Donate Now</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menu">
+        <span class="when-closed">{{ icon("menu", 26) }}</span>
+        <span class="when-open">{{ icon("close", 26) }}</span>
+      </button>
+    </div>
+
+    <nav class="nav" id="nav" aria-label="Main">
+      <ul class="nav-list wrap">
+        {% for item in site.nav %}
+        <li class="nav-item{% if item.children %} has-sub{% endif %}">
+          {% if item.children %}
+          <button class="nav-link" type="button" aria-expanded="false">{{ item.label }} {{ icon("chevron", 16) }}</button>
+          <ul class="sub">
+            {% for c in item.children %}<li><a href="{{ c.href }}">{{ c.label }}</a></li>{% endfor %}
+          </ul>
+          {% else %}
+          <a class="nav-link" href="{{ item.href }}"{% if page.url == item.href %} aria-current="page"{% endif %}>{{ item.label }}</a>
+          {% endif %}
+        </li>
+        {% endfor %}
+        <li class="nav-item nav-donate-m"><a class="nav-link" href="/donate/">Donate</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    {{ content | safe }}
+  </main>
+
+  <section class="giving-band" aria-labelledby="give-h">
+    <div class="wrap giving-inner">
+      <div>
+        <p class="eyebrow">Join the work</p>
+        <h2 id="give-h">100% of your donation supports our programs and partners.</h2>
+        <p>The Abundance Foundation does not use public donations for administrative or fundraising costs.</p>
+      </div>
+      <a class="btn btn-donate btn-lg" href="/donate/">{{ icon("heart", 18) }} Donate Now</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap footer-grid">
+      <div class="footer-brand">
+        <img src="/img/logo.png" width="162" height="51" alt="Abundance Foundation" loading="lazy">
+        <p>The Abundance Foundation and our partners train, support and empower local leaders in communities worldwide.</p>
+        <ul class="social">
+          {% for s in site.social %}<li><a href="{{ s.href }}" rel="noopener" target="_blank" aria-label="{{ s.label }}" title="{{ s.label }}"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="{{ s.path }}"/></svg></a></li>{% endfor %}
+        </ul>
+      </div>
+      <div>
+        <h3>Our Work</h3>
+        <ul>
+          {% for a in hub.areas %}<li><a href="{{ a.path }}">{{ a.name }}</a></li>{% endfor %}
+        </ul>
+      </div>
+      <div>
+        <h3>Get Involved</h3>
+        <ul>
+          <li><a href="/get-involved/">Partner with Us</a></li>
+          <li><a href="/why-partner/">Why Abundance Foundation?</a></li>
+          <li><a href="/our-partners/">Our Partners</a></li>
+          <li><a href="/donate/">Donate</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>About</h3>
+        <ul>
+          <li><a href="/about/">About Us</a></li>
+          <li><a href="/about/#leadership">Leadership</a></li>
+          <li><a href="/news-updates/">News &amp; Updates</a></li>
+          <li><a href="/press/">Press</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+      <address>
+        <h3>Contact</h3>
+        <p>127 University Avenue<br>Berkeley, CA 94710-1616</p>
+        <p><a href="mailto:info@abundance.org">info@abundance.org</a><br>510-841-4145</p>
+      </address>
+    </div>
+    <div class="footer-legal">
+      <div class="wrap">
+        <p>The Abundance Foundation is a 501(c)(3) public charity. Donations are tax deductible to the extent provided by law.</p>
+        <p>&copy; {{ "" | year }} Abundance Foundation &nbsp;·&nbsp; <a href="/privacy/">Privacy Policy</a> &nbsp;·&nbsp; <a href="/refundpolicy/">Refund Policy</a></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

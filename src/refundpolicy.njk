@@ -1,0 +1,7 @@
+---
+layout: base.njk
+title: Refund Policy
+---
+{% set ph = { title: hub.by["/refundpolicy/"].title, color: "teal" } %}
+{% include "pagehead.njk" %}
+<section class="wrap detail"><article class="prose detail-body">{{ hub.by["/refundpolicy/"].body | safe }}</article></section>
