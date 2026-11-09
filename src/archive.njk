@@ -1,0 +1,25 @@
+---
+layout: base.njk
+title: Past Projects & Archive
+permalink: /archive/index.html
+description: Past projects supported by the Abundance Foundation and the news archive.
+---
+{%- from "icons.njk" import icon -%}
+{% set ph = { title: "Past Projects & Archive", eyebrow: "Our history", color: "teal", lead: "Projects we have supported over the years, and our earlier news. For the cumulative record, see the impact of the Abundance Project for Global Health." } %}
+{% include "pagehead.njk" %}
+<section class="wrap" aria-labelledby="past-h">
+  <h2 id="past-h" class="h-section">Past projects</h2>
+  {% for g in hub.past %}{% if g.items.length %}
+  <h3 class="h-sub" id="past-{{ g.name | lower | replace(' & ', '-') | replace(' ', '-') }}">{{ g.name }}</h3>
+  <ul class="archive-list">
+    {% for p in g.items %}<li><a href="{{ p.href }}">{{ p.title }}</a><span>{{ p.summary }}{% if not p.summary.endsWith('.') %}…{% endif %}</span></li>{% endfor %}
+  </ul>
+  {% endif %}{% endfor %}
+  <p class="area-links"><a href="/impact-abundance-project-for-global-health/">Impact of the Abundance Project for Global Health</a></p>
+</section>
+<section class="wrap" id="news" aria-labelledby="na-h">
+  <h2 id="na-h" class="h-section">News archive</h2>
+  <ul class="archive-list">
+    {% for p in hub.newsArchive %}<li><a href="{{ p.path }}">{{ p.title }}</a><span>{{ p.excerpt }}</span></li>{% endfor %}
+  </ul>
+</section>

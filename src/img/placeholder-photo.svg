@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Placeholder: photo needed">
+  <defs>
+    <pattern id="s" width="28" height="28" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="28" height="28" fill="#e9e2da"/><rect width="14" height="28" fill="#dfd6cc"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="500" fill="url(#s)"/>
+  <rect x="12" y="12" width="776" height="476" fill="none" stroke="#8a7f74" stroke-width="3" stroke-dasharray="14 10"/>
+  <g transform="translate(400 210)" fill="none" stroke="#6b6157" stroke-width="7" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M-62-34h26l12-20h48l12 20h26a14 14 0 0 1 14 14v70a14 14 0 0 1-14 14h-124a14 14 0 0 1-14-14v-70a14 14 0 0 1 14-14Z"/>
+    <circle cx="0" cy="8" r="26"/>
+  </g>
+  <text x="400" y="330" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-weight="700" font-size="34" letter-spacing="4" fill="#5b5249">PLACEHOLDER IMAGE</text>
+  <text x="400" y="372" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="24" fill="#6b6157">Real photo coming soon</text>
+</svg>

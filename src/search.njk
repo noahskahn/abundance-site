@@ -1,0 +1,18 @@
+---
+layout: base.njk
+title: Search
+permalink: /search/index.html
+---
+{%- from "icons.njk" import icon -%}
+{% set ph = { title: "Search", eyebrow: "Find a page", color: "teal" } %}
+{% include "pagehead.njk" %}
+<section class="wrap search-page" data-search>
+  <form action="/search/" method="get" role="search" class="search-big">
+    <label class="sr" for="q">Search the site</label>
+    <input id="q" name="q" type="search" placeholder="Search projects, news, people…" autocomplete="off" autofocus>
+    <button class="btn btn-primary" type="submit">Search</button>
+  </form>
+  <p class="fine" data-count aria-live="polite"></p>
+  <ol class="results" data-results></ol>
+  <noscript><p>Search needs JavaScript. Use the menu to browse instead.</p></noscript>
+</section>

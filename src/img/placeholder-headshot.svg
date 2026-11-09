@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Placeholder: headshot needed">
+  <defs>
+    <pattern id="s" width="24" height="24" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="24" height="24" fill="#e9e2da"/><rect width="12" height="24" fill="#dfd6cc"/>
+    </pattern>
+  </defs>
+  <rect width="400" height="400" fill="url(#s)"/>
+  <circle cx="200" cy="150" r="58" fill="#b9aea2"/>
+  <path d="M70 400c0-86 58-130 130-130s130 44 130 130Z" fill="#b9aea2"/>
+  <rect x="40" y="296" width="320" height="64" rx="6" fill="#fffdfb" fill-opacity=".92"/>
+  <text x="200" y="326" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-weight="700" font-size="22" letter-spacing="2" fill="#5b5249">PLACEHOLDER</text>
+  <text x="200" y="350" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="18" fill="#6b6157">Headshot coming soon</text>
+</svg>

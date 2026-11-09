@@ -12,7 +12,7 @@ description: News and updates from the Abundance Foundation and its partners.
   <div class="cards cards-2">
     {% for p in hub.newsFeatured %}
     <article class="card card-wide">
-      {% if p.image %}<a class="card-img" href="{{ p.path }}" tabindex="-1" aria-hidden="true"><img src="{{ p.image }}" alt="" loading="lazy"></a>{% endif %}
+      {% if p.image %}<a class="card-img{% if p.placeholder %} is-placeholder{% endif %}" href="{{ p.path }}" tabindex="-1" aria-hidden="true"><img src="{{ p.image }}" alt="" loading="lazy"></a>{% endif %}
       <div class="card-body">
         <p class="tag">{{ p.categoryLabel }}</p>
         <h3><a href="{{ p.path }}">{{ p.title }}</a></h3>
@@ -23,11 +23,11 @@ description: News and updates from the Abundance Foundation and its partners.
     {% endfor %}
   </div>
 
-  <h2 class="h-section all-h">All News &amp; Updates</h2>
+  <h2 class="h-section all-h">Recent news</h2>
   <ul class="news-index">
     {% for p in hub.news %}
     <li>
-      <a class="thumb" href="{{ p.path }}" tabindex="-1" aria-hidden="true">{% if p.image %}<img src="{{ p.image }}" alt="" loading="lazy">{% else %}<span class="thumb-ph">{{ icon("globe", 40) }}</span>{% endif %}</a>
+      <a class="thumb{% if p.placeholder %} is-placeholder{% endif %}" href="{{ p.path }}" tabindex="-1" aria-hidden="true">{% if p.image %}<img src="{{ p.image }}" alt="" loading="lazy">{% else %}<span class="thumb-ph">{{ icon("globe", 40) }}</span>{% endif %}</a>
       <div>
         <p class="tag">{{ p.categoryLabel }}</p>
         <h3><a href="{{ p.path }}">{{ p.title }}</a></h3>
@@ -36,4 +36,5 @@ description: News and updates from the Abundance Foundation and its partners.
     </li>
     {% endfor %}
   </ul>
+  <p class="area-links">Looking for older stories? Browse the <a href="/archive/#news">news archive</a> ({{ hub.newsArchive.length }} posts).</p>
 </section>

@@ -1,34 +1,21 @@
 ---
 layout: base.njk
 title: Get Involved
-description: Our partners recognize the role that global health, empowerment, and arts and education play in creating lasting social change.
+description: Why the Abundance Foundation — a nimble foundation with a unique network of grassroots leaders and visionaries.
 ---
 {%- from "icons.njk" import icon -%}
-{% set ph = { title: "Get Involved", eyebrow: "Partner with us", image: "/img/c/cgi_annual_meeting_9-27-15_154843_plenary_session_investing_in_prevention_and_resilient_health_systems-_adam_schultz_013.jpg", color: "teal", lead: "Our Partners recognize the role that global health, empowerment, and arts and education play in creating lasting social change." } %}
+{% set ph = { title: "Get Involved", eyebrow: "Why Abundance Foundation?", image: "/img/c/cgi_annual_meeting_9-27-15_154843_plenary_session_investing_in_prevention_and_resilient_health_systems-_adam_schultz_013.jpg", color: "teal", lead: "Our partners recognize the role that global health, empowerment, and arts and education play in creating lasting social change." } %}
 {% include "pagehead.njk" %}
-<section class="wrap two-col two-col-top">
-  <div class="prose">
-    <h2 class="h-section">Who Partners with Abundance Foundation?</h2>
-    <p>Our Partners span across the globe and include philanthropists, entrepreneurs, leaders in academia and the nonprofit sector, as well as innovative and visionary foundations and corporations.</p>
-    <p>Together, we are able to utilize innovative methods and empower local leaders in communities worldwide to develop new capacities that address pressing social problems and build lasting improvements in quality of life.</p>
-  </div>
-  <div class="callout-box">
-    <h2>Partner with Us</h2>
-    <p>We work with each of our partners to identify unique and valuable ways to collaborate. If you would like to explore opportunities to get involved with Abundance Foundation, please contact <a href="mailto:partner@abundance.org">partner@abundance.org</a>.</p>
-    <a class="btn btn-primary" href="mailto:partner@abundance.org">Email partner@abundance.org</a>
-  </div>
-</section>
-<section class="wrap" aria-labelledby="gi-h">
-  <h2 id="gi-h" class="h-section">Learn more</h2>
-  <div class="cards cards-3">
-    {% for path in ["/our-partners/", "/why-partner/", "/impact-abundance-project-for-global-health/"] %}
-    {% set p = hub.by[path] %}
-    <article class="card tone-teal">
-      <div class="card-body">
-        <h3><a href="{{ p.path }}">{{ p.title }}</a></h3>
-        <a class="more" href="{{ p.path }}">Read more {{ icon("arrow", 18) }}</a>
-      </div>
-    </article>
-    {% endfor %}
-  </div>
+<section class="wrap detail">
+  <article class="prose detail-body">{{ hub.by["/why-partner/"].body | safe }}</article>
+  <aside class="side">
+    <h2>Ways to help</h2>
+    <ul>
+      <li><a href="/donate/">Donate</a></li>
+      <li><a href="/our-partners/">Our partners</a></li>
+      <li><a href="/news-updates/">Follow our news</a></li>
+      <li><a href="/contact/">Contact us</a></li>
+    </ul>
+    <a class="btn btn-donate btn-block" href="/donate/">Donate</a>
+  </aside>
 </section>

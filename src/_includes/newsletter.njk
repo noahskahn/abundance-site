@@ -1,0 +1,16 @@
+{%- from "icons.njk" import icon -%}
+<section class="newsletter" aria-labelledby="nl-h">
+  <div class="wrap newsletter-inner">
+    <div>
+      <p class="eyebrow">Stay in touch</p>
+      <h2 id="nl-h">Get news from the Abundance network.</h2>
+      <p>Occasional updates on our partners and projects. No spam.</p>
+    </div>
+    <form class="nl-form" data-newsletter{% if site.newsletter.action %} action="{{ site.newsletter.action }}" method="{{ site.newsletter.method }}"{% endif %}>
+      <label class="sr" for="nl-email">Email address</label>
+      <input id="nl-email" name="{{ site.newsletter.emailField }}" type="email" placeholder="you@example.com" autocomplete="email" required>
+      <button class="btn btn-primary" type="submit">Subscribe</button>
+      <p class="nl-note" role="status" hidden>Newsletter signup is almost ready. It will be connected before launch.</p>
+    </form>
+  </div>
+</section>

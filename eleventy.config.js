@@ -5,6 +5,10 @@ const NOINDEX = process.env.NOINDEX === "true";
 
 // Links inside the original copy that were already dead or used old slugs.
 const LINK_FIX = {
+  "/why-partner/": "/get-involved/",
+  "/covid/": "/archive/#news",
+  "/letter-from-dr-stephen-kahn-about-urgent-covid-19-research-on-bcg-vaccine/": "/archive/#news",
+  "/health/the-abundance-covid-19-response-fund/": "/announcing-the-abundance-foundation-covid-19-response-fund/",
   "/arts-education/agency-by-design/": "/arts-education/agencybydesign/",
   "/1832": "/letter-from-dr-stephen-kahn-about-urgent-covid-19-research-on-bcg-vaccine/",
   "/1298": "/abundance-foundation-funds-development-of-ebola-diagnostic-test/",

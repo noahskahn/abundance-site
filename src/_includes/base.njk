@@ -48,6 +48,13 @@
           {% endif %}
         </li>
         {% endfor %}
+        <li class="nav-item nav-search">
+          <form action="/search/" method="get" role="search">
+            <label class="sr" for="nav-q">Search the site</label>
+            <input id="nav-q" name="q" type="search" placeholder="Search" autocomplete="off">
+            <button type="submit" aria-label="Search">{{ icon("search", 18) }}</button>
+          </form>
+        </li>
         <li class="nav-item nav-donate-m"><a class="nav-link" href="/donate/">Donate</a></li>
       </ul>
     </nav>
@@ -56,6 +63,8 @@
   <main id="main">
     {{ content | safe }}
   </main>
+
+  {% include "newsletter.njk" %}
 
   <section class="giving-band" aria-labelledby="give-h">
     <div class="wrap giving-inner">
@@ -81,13 +90,14 @@
         <h3>Our Work</h3>
         <ul>
           {% for a in hub.areas %}<li><a href="{{ a.path }}">{{ a.name }}</a></li>{% endfor %}
+          <li><a href="/harvard-abundance-fund/">Harvard Abundance Fund</a></li>
+          <li><a href="/archive/">Past Projects &amp; Archive</a></li>
         </ul>
       </div>
       <div>
         <h3>Get Involved</h3>
         <ul>
-          <li><a href="/get-involved/">Partner with Us</a></li>
-          <li><a href="/why-partner/">Why Abundance Foundation?</a></li>
+          <li><a href="/get-involved/">Why Abundance Foundation?</a></li>
           <li><a href="/our-partners/">Our Partners</a></li>
           <li><a href="/donate/">Donate</a></li>
         </ul>

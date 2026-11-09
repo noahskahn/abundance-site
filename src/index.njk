@@ -4,7 +4,7 @@ title: Abundance Foundation
 bodyClass: home
 ---
 {%- from "icons.njk" import icon -%}
-{% set featured = ["/empowerment/nyanam/", "/arts-education/out-of-eden-walk/", "/health/pediatric/"] %}
+{% set featured = ["/health/ses-tb-lab/", "/arts-education/out-of-eden-walk/", "/health/pediatric/"] %}
 
 <section class="hero" aria-labelledby="hero-h">
   <img class="hero-img" src="/img/c/media_nyanam_b.jpg" alt="" fetchpriority="high">
@@ -45,17 +45,18 @@ bodyClass: home
     </div>
     <div class="cards cards-3">
       {% for href in featured %}
-        {% for a in hub.areas %}{% for p in a.projects %}{% if p.href == href %}
+        {% for p in hub.allProjects %}{% if p.href == href %}
+        {% set a = hub.areaBySlug[p.area] %}
         <article class="card tone-{{ a.color }}">
-          <a class="card-img" href="{{ p.href }}" tabindex="-1" aria-hidden="true"><img src="{{ p.thumb }}" alt="" loading="lazy"></a>
+          <a class="card-img{% if 'placeholder' in p.thumb %} is-placeholder{% endif %}" href="{{ p.href }}" tabindex="-1" aria-hidden="true"><img src="{{ p.thumb }}" alt="" loading="lazy"></a>
           <div class="card-body">
-            <p class="tag">{{ a.name }}</p>
+            <p class="tag">{{ a.name }}{% if p.funder %} · <span class="funder">{{ p.funder }}</span>{% endif %}</p>
             <h3><a href="{{ p.href }}">{{ p.title }}</a></h3>
-            <p>{{ p.summary }}…</p>
+            <p>{{ p.summary }}{% if not p.summary.endsWith('.') %}…{% endif %}</p>
             <a class="more" href="{{ p.href }}">Read more {{ icon("arrow", 18) }}</a>
           </div>
         </article>
-        {% endif %}{% endfor %}{% endfor %}
+        {% endif %}{% endfor %}
       {% endfor %}
     </div>
   </div>
@@ -84,7 +85,7 @@ bodyClass: home
     </div>
     <div class="news-grid">
       {% set lead = hub.news[0] %}
-      <a class="news-lead" href="{{ lead.path }}">
+      <a class="news-lead{% if lead.placeholder %} has-ph{% endif %}" href="{{ lead.path }}">
         {% if lead.image %}<img src="{{ lead.image }}" alt="" loading="lazy">{% endif %}
         <div class="news-lead-text">
           <p class="tag">{{ lead.categoryLabel }}</p>
@@ -112,8 +113,8 @@ bodyClass: home
     <a class="btn btn-outline" href="/about/">About the Foundation</a>
   </div>
   <dl class="stats">
-    <div><dt>Projects</dt><dd>32</dd><dd class="sub">engaged as a partner or collaborator</dd></div>
     <div><dt>Of every gift</dt><dd>100%</dd><dd class="sub">supports programs and partners</dd></div>
-    <div><dt>Impact areas</dt><dd>3</dd><dd class="sub">Health, Empowerment, Arts &amp; Education</dd></div>
+    <div><dt>TB laboratory, Lima</dt><dd>$1.2M</dd><dd class="sub">secured through the Harvard Abundance Fund</dd></div>
+    <div><dt>Out of Eden Learn</dt><dd>80,000+</dd><dd class="sub">students in 70+ countries</dd></div>
   </dl>
 </section>

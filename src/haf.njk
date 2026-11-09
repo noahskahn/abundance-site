@@ -1,0 +1,29 @@
+---
+layout: base.njk
+title: Harvard Abundance Fund
+permalink: /harvard-abundance-fund/index.html
+description: Projects funded through the Abundance Donor-Advised Fund at Harvard University.
+---
+{%- from "icons.njk" import icon -%}
+{% set ph = { title: "Harvard Abundance Fund", eyebrow: "Our work", color: "teal", image: "/img/s1.jpg", lead: "Some of Abundance’s work is funded through the Abundance Donor-Advised Fund at Harvard University." } %}
+{% include "pagehead.njk" %}
+<section class="wrap area-intro">
+  <div class="lead-big"><p>The Harvard Abundance Fund supports work coordinated with Harvard Medical School’s Department of Global Health and Social Medicine and its partners. Other projects are funded directly by the Abundance Foundation, a 501(c)(3) public charity. Each project page says which vehicle supported it.</p></div>
+</section>
+<section class="wrap" aria-labelledby="haf-h">
+  <h2 id="haf-h" class="h-section">Projects</h2>
+  <div class="cards cards-3">
+    {% for p in hub.haf %}
+    {% set a = hub.areaBySlug[p.area] %}
+    <article class="card tone-{{ a.color }}">
+      <a class="card-img{% if 'placeholder' in p.thumb %} is-placeholder{% endif %}" href="{{ p.href }}" tabindex="-1" aria-hidden="true">{% if p.thumb %}<img src="{{ p.thumb }}" alt="" loading="lazy">{% endif %}</a>
+      <div class="card-body">
+        <p class="tag">{{ a.name }}</p>
+        <h3><a href="{{ p.href }}">{{ p.title }}</a></h3>
+        <p>{{ p.summary }}{% if not p.summary.endsWith('.') %}…{% endif %}</p>
+        <a class="more" href="{{ p.href }}">Read more {{ icon("arrow", 18) }}</a>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>

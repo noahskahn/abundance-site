@@ -76,3 +76,56 @@
     });
   });
 })();
+
+/* Newsletter + search (added) */
+(function () {
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+
+  // Newsletter: until a signup service is configured (site.newsletter.action), just explain.
+  document.querySelectorAll("form[data-newsletter]").forEach(function (f) {
+    if (f.getAttribute("action")) return;
+    f.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var n = $(".nl-note", f);
+      if (n) n.hidden = false;
+    });
+  });
+
+  // Search: tiny in-browser index (search.json), no libraries.
+  var box = $("[data-search]");
+  if (!box) return;
+  var base = ($("link[rel=stylesheet]").getAttribute("href") || "").replace(/\/css\/site\.css.*$/, "");
+  var input = $("#q", box), out = $("[data-results]", box), count = $("[data-count]", box);
+  var esc = function (s) { return s.replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+  var rx = function (s) { return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); };
+  var index = null;
+
+  var run = function () {
+    var q = input.value.trim().toLowerCase();
+    if (!q) { out.innerHTML = ""; count.textContent = ""; return; }
+    var terms = q.split(/\s+/).filter(Boolean);
+    var hits = index.map(function (d) {
+      var t = d.t.toLowerCase(), x = d.x.toLowerCase(), score = 0;
+      for (var i = 0; i < terms.length; i++) {
+        var inT = t.indexOf(terms[i]) > -1, inX = x.indexOf(terms[i]) > -1;
+        if (!inT && !inX) return null;
+        score += (inT ? 10 : 0) + (inX ? 1 : 0);
+      }
+      return { d: d, s: score };
+    }).filter(Boolean).sort(function (a, b) { return b.s - a.s; });
+    count.textContent = hits.length + (hits.length === 1 ? " result" : " results") + " for “" + input.value.trim() + "”";
+    var re = new RegExp("(" + terms.map(rx).join("|") + ")", "ig");
+    out.innerHTML = hits.slice(0, 40).map(function (h) {
+      var d = h.d, snip = d.x.length > 180 ? d.x.slice(0, 180) + "…" : d.x;
+      return '<li><span class="kind">' + esc(d.s) + '</span><a href="' + base + d.u + '">' + esc(d.t).replace(re, "<mark>$1</mark>") + "</a><p>" + esc(snip).replace(re, "<mark>$1</mark>") + "</p></li>";
+    }).join("");
+  };
+
+  fetch(base + "/search.json").then(function (r) { return r.json(); }).then(function (j) {
+    index = j;
+    var q = new URLSearchParams(location.search).get("q");
+    if (q) input.value = q;
+    input.addEventListener("input", run);
+    run();
+  });
+})();

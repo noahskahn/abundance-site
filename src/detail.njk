@@ -17,6 +17,9 @@ eleventyComputed:
 {% include "pagehead.njk" %}
 <section class="wrap detail">
   <article class="prose detail-body">
+    {% if d.status == "past" %}<p class="past-banner"><strong>Past project.</strong> This project is no longer actively supported. See <a href="/archive/">all past projects</a>.</p>{% endif %}
+    {% if d.funder %}<p class="funder-line">Funded through: <a class="funder" href="{% if d.funder == 'Harvard Abundance Fund' %}/harvard-abundance-fund/{% else %}/about/{% endif %}">{{ d.funder }}</a></p>{% endif %}
+    {% if d.placeholder and d.image %}<figure class="ph-figure"><img src="{{ d.image }}" alt="Placeholder: photo for {{ d.title }} coming soon" loading="lazy"></figure>{% endif %}
     {{ d.lead | safe }}
     {{ d.body | safe }}
   </article>
@@ -25,8 +28,9 @@ eleventyComputed:
     <h2>More in {{ areaObj.name }}</h2>
     <ul>
       {% for p in areaObj.projects %}<li><a href="{{ p.href }}"{% if p.href == d.path %} aria-current="page"{% endif %}>{{ p.title }}</a></li>{% endfor %}
+      {% for p in areaObj.haf %}<li><a href="{{ p.href }}"{% if p.href == d.path %} aria-current="page"{% endif %}>{{ p.title }}</a></li>{% endfor %}
     </ul>
-    <a class="btn btn-donate btn-block" href="/donate/?t={{ areaObj.slug }}">Donate to {{ areaObj.name }}</a>
+    <a class="btn btn-donate btn-block" href="/donate/">Donate</a>
   </aside>
   {% endif %}
 </section>

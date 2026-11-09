@@ -20,22 +20,34 @@ eleventyComputed:
 </section>
 <section class="wrap" aria-labelledby="proj-h">
   <h2 id="proj-h" class="h-section">Projects</h2>
-  <div class="cards cards-3">
-    {% for p in area.projects %}
+  {% macro card(p, area) %}
     <article class="card tone-{{ area.color }}">
-      <a class="card-img" href="{{ p.href }}" tabindex="-1" aria-hidden="true">{% if p.thumb %}<img src="{{ p.thumb }}" alt="" loading="lazy">{% endif %}</a>
+      <a class="card-img{% if 'placeholder' in p.thumb %} is-placeholder{% endif %}" href="{{ p.href }}" tabindex="-1" aria-hidden="true">{% if p.thumb %}<img src="{{ p.thumb }}" alt="" loading="lazy">{% endif %}</a>
       <div class="card-body">
+        {% if p.funder %}<p class="tag"><span class="funder">{{ p.funder }}</span></p>{% endif %}
         <h3><a href="{{ p.href }}">{{ p.title }}</a></h3>
-        <p>{{ p.summary }}…</p>
-        <a class="more" href="{{ p.href }}">Read more {{ icon("arrow", 18) }}</a>
+        <p>{{ p.summary }}{% if not p.summary.endsWith('.') %}…{% endif %}</p>
+        <a class="more" href="{{ p.href }}">Read more</a>
       </div>
     </article>
-    {% endfor %}
+  {% endmacro %}
+  <div class="cards cards-3">
+    {% for p in area.projects %}{% if not p.group %}{{ card(p, area) }}{% endif %}{% endfor %}
   </div>
+  {% for g in area.groups %}
+  <h3 class="h-sub">{{ g }}</h3>
+  <div class="cards cards-3">
+    {% for p in area.projects %}{% if p.group == g %}{{ card(p, area) }}{% endif %}{% endfor %}
+  </div>
+  {% endfor %}
+  <p class="area-links">
+    {% if area.haf.length %}Some {{ area.name }} projects are funded through the <a href="/harvard-abundance-fund/">Harvard Abundance Fund</a>. {% endif %}
+    {% if area.past.length %}See <a href="/archive/#past-{{ area.slug }}">past {{ area.name }} projects</a>.{% endif %}
+  </p>
 </section>
 <section class="area-donate wrap">
   <div class="callout tone-{{ area.color }}">
-    <div><h2>Support our {{ area.name }} work</h2><p>Your gift goes entirely to programs and partners in this impact area.</p></div>
-    <a class="btn btn-donate" href="/donate/?t={{ area.slug }}">Donate to {{ area.name }}</a>
+    <div><h2>Support our work</h2><p>100% of your gift goes to programs and partners.</p></div>
+    <a class="btn btn-donate" href="/donate/">Donate</a>
   </div>
 </section>

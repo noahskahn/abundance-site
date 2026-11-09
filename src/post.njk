@@ -16,7 +16,10 @@ eleventyComputed:
     <h1>{{ post.title }}</h1>
   </header>
   <div class="wrap post-wrap">
-    <div class="prose">{{ post.body | safe }}</div>
+    <div class="prose">
+      {% if post.placeholder %}<figure class="ph-figure"><img src="{{ post.image }}" alt="Placeholder: photo coming soon" loading="lazy"></figure>{% endif %}
+      {{ post.body | safe }}
+    </div>
   </div>
   <footer class="wrap post-foot"><a class="more back" href="/news-updates/">{{ icon("arrow", 18) }} Back to all news</a></footer>
 </article>
