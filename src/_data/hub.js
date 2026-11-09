@@ -207,7 +207,11 @@ const people = (sel) =>
     .get();
 const PH_HEAD = "/img/placeholder-headshot.svg";
 const soon = (name, role) => ({ name, role, photo: PH_HEAD, bio: "<p>Bio coming soon.</p>", placeholder: true });
-const board = people("#board-members").concat(soon("Carlos Faerron", "Board of Trustees"));
+// Officer titles per the most recent Form 990 (FY2024, via ProPublica Nonprofit Explorer).
+const OFFICER = { "Scott Cohen": "Secretary, Board of Trustees", "Mary Moran Perry": "Treasurer, Board of Trustees" };
+const board = people("#board-members")
+  .map((m) => { const k = Object.keys(OFFICER).find((n) => m.name.startsWith(n)); return k ? { ...m, role: OFFICER[k] } : m; })
+  .concat(soon("Carlos Faerron", "Board of Trustees"));
 const staff = [soon("Hugo Flores Navarro", "Program Manager")]
   .concat(people("#staff-members").filter((m) => !/Griffin/.test(m.name)))
   .concat([soon("Jill Kauffman", "Title to be confirmed"), soon("Jeanne Lemieur", "Title to be confirmed")]);
