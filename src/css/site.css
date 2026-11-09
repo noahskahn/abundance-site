@@ -437,8 +437,8 @@ main > section.wrap{padding-block:clamp(2rem,5vw,3.5rem)}
 .newsletter .eyebrow{color:var(--orange)}
 .nl-form{display:flex;flex-wrap:wrap;gap:.6rem;flex:none;max-width:30rem;width:100%}
 .nl-form input{flex:1;min-width:200px;font:400 1.05rem var(--sans);padding:.85rem 1rem;border:0;border-radius:var(--r)}
-.nl-form .btn{background:var(--orange);color:var(--teal-ink)}
-.nl-form .btn:hover{background:#ffab49}
+.newsletter .nl-form .btn{background:var(--orange);color:var(--teal-ink)}
+.newsletter .nl-form .btn:hover{background:#ffab49}
 .nl-note{flex-basis:100%;margin-top:.2rem!important;color:#fff;font-size:.95rem}
 
 @media (max-width:860px){
@@ -450,3 +450,9 @@ main > section.wrap{padding-block:clamp(2rem,5vw,3.5rem)}
 
 .news-lead.has-ph img{opacity:.28}
 .news-lead.has-ph{background:var(--teal-dark)}
+
+.contact-form .nl-form{display:grid;gap:.5rem;max-width:30rem;margin:1.2rem 0}
+.contact-form .nl-form label{font-weight:700;font-size:.95rem}
+.contact-form .nl-form input{min-width:0;border:1.5px solid #c9bdb0;background:var(--paper)}
+.contact-form .nl-form .btn{justify-self:start;margin-top:.4rem}
+.contact-form .nl-note{color:var(--teal-dark);font-weight:600}
