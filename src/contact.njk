@@ -25,7 +25,8 @@ description: The Abundance Foundation is based in Berkeley, CA. Get in touch or 
     </form>
   </div>
 </section>
+{% include "newsletter.njk" %}
 <section class="band-cream stat-line">
-  <div class="wrap"><p><strong>32</strong> projects the Abundance Foundation is engaged in as a partner or collaborator.</p>
+  <div class="wrap"><p>Explore our work</p>
   <div class="chips">{% for a in hub.areas %}<a class="chip chip-{{ a.color }}" href="{{ a.path }}">{{ a.name }}</a>{% endfor %}</div></div>
 </section>
